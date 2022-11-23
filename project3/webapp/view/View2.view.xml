@@ -1,0 +1,106 @@
+<mvc:View controllerName="project3.controller.View2"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+	height="100%">
+  	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" navButtonPress="onInven">
+                
+		<headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+            	<expandedHeading>
+					<m:Title text="강남 본점" wrapping="true" />
+				</expandedHeading>
+                <actions>
+					<m:Button text="뒤로가기" type="Default" press="onBack" icon="sap-icon://customer-order-entry"/>
+                    <m:Button text="저장하기" type="Default" press="onSaveFull" icon="sap-icon://customer-order-entry"/>
+			    </actions>
+
+
+            </ObjectPageDynamicHeaderTitle>
+
+
+		</headerTitle>
+
+
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="재고 조회">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+												<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            sticky="ColumnHeaders"
+                            items="{main2>/InvensSet}"
+                            mode = "MultiSelect"> 
+       
+                            <m:columns>
+                                <m:Column
+                                    width="5em">
+                                    <m:Text text="상품 코드"  />
+                                </m:Column>
+                                <m:Column
+                                    width="8em">
+                                    <m:Text text="상품명"  />
+                                </m:Column>
+                                <m:Column
+                                    width="8em">
+                                    <m:Text text="장부상 재고수량" />
+                                </m:Column>
+                                <m:Column
+                                    width="8em">
+                                    <m:Text text="실 재고수량" />
+                                </m:Column>
+                                <m:Column
+                                    width="8em" visible="false"  >
+                                    <m:Text text="지점코드"  />
+                                </m:Column>
+                                 <m:Column
+                                    width="8em" visible="false">
+                                    <m:Text text="총액" />
+                                </m:Column>
+                               
+                                         
+                                      
+        
+
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{main2>Gocod}" id="GocodValue" />
+                                        <m:Text text="{main2>Gonam}"/>
+                                        <m:Text text="{main2>Bookqua}" />
+                                        <m:StepInput
+                                                min="0"						                        
+						                        id="CurrentValue"
+						                        value="{main2>Actuqua}"
+                                                change = "onChange"
+						                        width="100px"/>
+                                        <m:Text text="{main2>Stcod}" id="Stcod" />
+                                        <m:Text text="{main2>Boookprice}" />
+                                       
+
+                                        
+                                       
+                                        
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+                        </blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+
+
+		</sections>
+
+	</ObjectPageLayout>
+
+    </mvc:View>

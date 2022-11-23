@@ -1,0 +1,55 @@
+<!-- 집앞배송 주소입력 -->
+
+<mvc:View controllerName="project4.controller.View4"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="집앞배송 주소입력">
+			</ObjectPageHeader>
+		</headerTitle>
+
+        <headerContent>
+            <m:VBox>
+
+                    <m:Text text="개인정보" />
+                    <m:Input id="Name" placeholder="이름을 입력하세요" width="55%"/>
+                    <m:Input id="Number" placeholder="연락처를 입력하세요" width="60%"/>
+
+                    <m:Text text="지역선택" />
+                    <m:ComboBox id="Value1" placeholder="시/도" width="50%" items="{path: 'search>/MidText'}" change="onChange" liveChange="onLiveChange" >
+                    <core:Item  key="{search>key}" text="{search>text}"/>
+                    </m:ComboBox>
+
+                    <m:ComboBox id="Value2" placeholder="구" width="50%" items="{path: 'search>/sublist'}">
+                    <core:Item  key="{search>key}" text="{search>text}"/>
+                    </m:ComboBox>
+
+                    <m:Input id="Filter" placeholder="상세주소" value="" />
+
+                    <!-- <m:Button text="주문하기" type="Emphasized" tooltip="주문" press="onOrder" /> -->
+                
+                    <m:Text text = "※ 집앞 배송은 오후 6시 이후에 출발합니다." />
+                                        
+            </m:VBox>
+
+
+
+		</headerContent>
+
+        <footer>	
+         
+            <m:OverflowToolbar id="order">
+                <m:ToolbarSpacer/>
+                <m:Button text="뒤로가기" type="Emphasized" tooltip="뒤로가기" press="onBack" />
+                <m:Button text="주문하기" type="Emphasized" press="onOrder"/>
+            </m:OverflowToolbar>
+        </footer>
+
+    </ObjectPageLayout>
+
+</mvc:View>

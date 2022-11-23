@@ -1,0 +1,51 @@
+<!-- 배송 희망 날짜 -->
+<mvc:View controllerName="project4.controller.View6"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+
+    <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="픽업 예정 날짜">
+			</ObjectPageHeader>
+		</headerTitle>
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="픽업 / 배송 날짜 선택">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+
+        	<m:List headerText="Input" items="{view>/dateList}">
+                <m:InputListItem label="{view>dateString}">
+                    <m:RadioButton groupName="GroupInputListItem" selected="{view>selected}" />
+                </m:InputListItem>
+                <!-- <m:InputListItem label="Battery Saving">
+                    <m:RadioButton groupName="GroupInputListItem" />
+                </m:InputListItem> -->
+            </m:List>
+
+</blocks>
+</ObjectPageSubSection>
+						
+    </subSections>
+					
+</ObjectPageSection>
+    </sections>
+
+    <footer>
+        <m:OverflowToolbar id="order">
+            <m:ToolbarSpacer/>  <!-- 이거 기준으로 좌우 나뉨 -->
+            <m:Button text="주문하기" type="Emphasized" press="onOrder"/>
+        </m:OverflowToolbar>
+    </footer>
+
+
+    </ObjectPageLayout>
+
+
+
+
+</mvc:View>

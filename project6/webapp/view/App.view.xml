@@ -1,0 +1,12 @@
+<mvc:View controllerName="project6.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <HBox class="sapUiTinyMarginBegin">
+        <Button text="1" press="onNavToPage('1')" tooltip="법인카드 결재요청 페이지" type="{= ${AppModel>/currentPage} === '1' ? 'Emphasized' : 'Default' }"/>
+        <Button text="2" press="onNavToPage('2')" tooltip="법인카드 사용수집" type="{= ${AppModel>/currentPage} === '2' ? 'Emphasized' : 'Default' }"/>
+        
+    </HBox>
+    <App id="app">
+    </App>
+</mvc:View>

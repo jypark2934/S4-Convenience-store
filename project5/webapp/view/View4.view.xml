@@ -1,0 +1,19 @@
+<!-- 배송조회 페이지 -->
+
+<mvc:View controllerName="project5.controller.View3"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+
+    <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true">
+            <headerTitle>
+                <ObjectPageHeader objectTitle="배송 조회">
+                </ObjectPageHeader>
+            </headerTitle>
+    </ObjectPageLayout>
+
+
+</mvc:View>

@@ -1,0 +1,103 @@
+<mvc:View controllerName="zz2.project2.controller.View2"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true" showNavButton="true" navButtonPress="onBuy">
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="발주목록">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            items="{main>/Basket}"
+                            mode = "MultiSelect"> 
+                            <m:columns>
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="상품 코드" />
+                                </m:Column> 
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="상품 명" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="발주 단가" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="10em">
+                                    <m:Text text="통화" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="수량" />
+                                </m:Column>
+
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+        
+                                        <m:Text text="{main>Gocod}" />
+                                        <m:Text text="{main>Gonam}" />   
+                                        <m:Text text="{main>Orprice}" />
+                                        <m:Text text="{main>Currency}" />
+
+					                        <m:StepInput
+                                                min="0"
+						                        max="100"
+						                        id="CurrentValue"
+						                        value="{main>custom}"
+                                                change = "onChange"
+                                                liveChange = "onLiveChange"
+						                        width="100px"/>
+
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+
+						</blocks>
+					</ObjectPageSubSection>
+
+				</subSections>
+
+
+			</ObjectPageSection>
+
+
+
+
+		</sections>
+
+        <footer>	
+            <m:OverflowToolbar id="otb2">
+                <m:Text text = "총 수량" width = "5%"/>
+                <m:Text id = "ToUnit" text = "{main>/Total}" width = "2em" change = "onChange" 
+                liveChange = "onLiveChange" textAlign = "End" />
+                <m:Text text = "개" width = "5%"/>
+                <m:Text text = "총 금액" width = "5%"/>
+                <m:Text id = "ToCurr" text = "{main>/TotalCurr}" width = "7em" change = "onChange" textAlign = "End" />
+                <m:Text text = "원" width = "5%"/>
+                <m:ComboBox id="Value5" items="{path: 'search2>/MidText'}" change="onChange" liveChange="onLiveChange" placeholder="지점이름" >
+                    <core:Item  key="{search2>key}" text="{search2>text}" width="50%"/>
+                </m:ComboBox>
+                <m:ToolbarSpacer/>
+                <m:Button text="뒤로가기" type="Emphasized" tooltip="뒤로가기" press="onBack" />
+                <m:Button text="발주하기" type="Emphasized" tooltip="발주하기" press="onOkBuy"/>
+            </m:OverflowToolbar>
+        </footer>
+
+        
+
+	</ObjectPageLayout>
+</mvc:View>

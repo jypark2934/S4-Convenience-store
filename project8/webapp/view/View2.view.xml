@@ -1,0 +1,100 @@
+<mvc:View controllerName="project8.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m" xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true" showNavButton="true" navButtonPress="onChart">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="배송 실적 조회">
+                <actions>
+                    <m:Button text="배송 조회 화면" type="Emphasized" tooltip="차트를 확인하려면 누르세요" press="onFirst" />                    
+                    
+                </actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<m:ObjectAttribute title="" text="전체 배송 건수 대비 완료 배송 건수를 확인하는 화면입니다."/>
+		</headerContent>
+
+		<sections>
+
+            <ObjectPageSection titleUppercase="false" title="월별 배송 실적">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                        <!-- 업데이트 인풋 창 -->
+                        <m:VBox>
+            <viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                width='100%' vizType='column'
+                vizProperties="{
+                    plotArea : {
+                        dataLabel: {
+                            visible: true
+                        },
+                        colorPalette : 
+                        [ '#107e3e', '#0a6ed1' ]
+                    },
+                    title : {
+                        text : '월별 배송 실적',
+                        visible : true
+                    },
+                    valueAxis : {
+                        title : {
+                        text : '배송 완료 건수',
+                        visible : true
+                    }
+                    },
+                     categoryAxis : {
+                        title : {
+                        text : '기간',
+                        visible : true
+                    }
+                    }
+                }">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/milk}"> 
+                    <!-- 차트데이터 aggregation binding -->
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{month}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="완료 배송 건수"
+                                value="{complete}" />
+                            <viz.data:MeasureDefinition name="전체 배송 건수"
+                                value="{total}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="완료 배송 건수" />
+                    <viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure"
+                        values="전체 배송 건수" />
+                    <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                    
+                </viz:feeds>
+            </viz:VizFrame>
+                            </m:VBox>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+            
+
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

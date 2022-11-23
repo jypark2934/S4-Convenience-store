@@ -1,0 +1,173 @@
+
+<mvc:View controllerName="zz2.project1.controller.View1"
+    	xmlns:c="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:u="sap.ui.unified"
+		xmlns="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:f="sap.f"
+		xmlns:layout="sap.ui.layout"
+		xmlns:fb="sap.ui.comp.filterbar"
+		height="100%"
+		>
+
+        
+		<f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick = "false" >
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="발주 내역 조회" />
+					</f:heading>
+					<f:expandedContent>
+						<Label text="{list>/ordertitle}"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="This is a subheading"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+						<Title text="This is a subheading"/>
+					</f:snappedTitleOnMobile>
+					 <f:content>
+					<layout:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+		
+	</layout:VerticalLayout>
+					</f:content>
+					<f:actions>
+						<ToolbarSpacer/>
+					</f:actions>
+				</f:DynamicPageTitle>
+			</f:title>
+
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="false" >
+						<FlexBox
+								alignItems="Start"
+								justifyContent="SpaceBetween">
+							<items>
+								<Panel
+										backgroundDesign="Transparent"
+										class="sapUiNoContentPadding">
+									<content>
+							
+										<layout:HorizontalLayout
+												allowWrapping="true">
+											<VBox>			
+											<ComboBox
+													id="ComboId"
+                                                     width="10rem"	
+                                                    items="{path: 'search>/MidText'}"
+													placeholder="지점이름">
+                                                    <c:Item key="{search>key}" text="{search>text}" />
+                                                </ComboBox>
+												 <Input id="input" placeholder="주문번호" value="" width="10rem"/>
+												 <Button text="기간지정" type="Ghost" press="onDate" width="10rem" ariaHasPopup="Dialog"/>
+												 <Button text="검색" type="Emphasized" press="onSearch"/>
+												 
+												<u:Calendar
+														visible="false"	
+											 			id="calendar"
+											 			select="handleCalendarSelect"
+											 			intervalSelection="true"
+														showWeekNumbers="false"
+														ariaHasPopup="Dialog"
+										 				weekNumberSelect="handleWeekNumberSelect"
+														startDate="{path:'viewModel>/startDate', type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}"
+														endDate="{path:'viewModel>/endDate', type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}"/>
+														</VBox>						
+										</layout:HorizontalLayout>
+									
+									</content>
+								</Panel>
+							</items>
+						</FlexBox>
+				</f:DynamicPageHeader>
+			</f:header>
+
+			<f:content>
+		
+				<t:Table
+						id="Table"
+						rows="{list>/ZZ2C_SORDERH}"
+					
+						selectionMode="MultiToggle">
+					
+					<t:extension>
+						<OverflowToolbar style="Clear">
+							<Title text="주문내역"/>
+							<!-- <Input width="5rem"/> -->
+						</OverflowToolbar>
+					</t:extension>
+					
+					<t:columns>
+				
+						<t:Column width="7rem">
+							<Label text="주문번호" />
+							<t:template>
+								<Link text="{list>Binum}" wrapping="false" press="onNavNext"  selectionChange="onSelectionChange"/>
+							</t:template>
+						</t:Column>
+						
+                        <t:Column width="6rem">
+							<Label text="지점이름" />
+							<t:template>
+								<Text text="{list>Stnam}" wrapping="false" />
+							</t:template>
+						</t:Column>
+
+                          <t:Column width="6rem">
+							<Label text="주문날짜" />
+							<t:template>
+								<Text text="{path: 'list>Bdate', type: 'sap.ui.model.odata.type.Date',
+                                formatOptions: {
+                                    pattern: 'yyyy-MM-dd'
+                                }}" wrapping="false" />
+							</t:template>
+						</t:Column>	
+
+                
+                     
+						
+						<t:Column width="6rem" hAlign="Center">
+							<Label text="상태" />
+							<t:template>
+								<ObjectStatus text="{list>Statu}" state="{
+								path: 'Available',
+								formatter: '.formatAvailableToObjectState'
+							}"/>
+							</t:template>
+						</t:Column>
+						
+						<!-- <t:Column width="6rem" hAlign="Center">
+							<Label text="Status" />
+							<t:template>
+								<c:Icon src="{
+								path: 'Available',
+								formatter: '.formatAvailableToIcon'
+							}"/>
+							</t:template>
+						</t:Column> -->
+					 
+					</t:columns>
+				</t:Table>
+		
+			</f:content>
+
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+							text="{/messagesLength}"
+							type="Emphasized"
+							press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+</mvc:View>

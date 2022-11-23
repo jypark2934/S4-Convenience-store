@@ -1,0 +1,191 @@
+<mvc:View controllerName="project5.controller.View1"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="고객 주문 프로그램">
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<!--<headerContent>
+			<f:SimpleForm id="SimpleForm5"
+                                editable="false"
+                                layout="ColumnLayout" width = "200%" >
+                                    <f:content>
+                                    
+			                            <m:ComboBox id="Value1" items="{path: 'search>/MidText'}" change="onChange" liveChange="onLiveChange" >
+			                            <core:Item  key="{search>key}" text="{search>text}" width="50%" />
+			                            </m:ComboBox>
+                                        <m:ComboBox id="Value2" items="{path: 'search>/sublist'}">
+				                        <core:Item  key="{search>key}" text="{search>text}" width="50%"/>
+			                            </m:ComboBox>
+                                        <m:Input id="Filter" value="" />
+                                        <m:Button text="주문하기" type="Emphasized" tooltip="주문" press="onOrder" />
+
+                                        
+                                        <m:Text text = "※ 집앞 배송은 오후 6시 이후에 출발합니다." />
+                                        
+                                    </f:content>
+            </f:SimpleForm> 
+
+            <m:VBox>
+
+                    <m:Text text="지역선택" />
+                    <m:ComboBox id="Value1" items="{path: 'search>/MidText'}" change="onChange" liveChange="onLiveChange" >
+                    <core:Item  key="{search>key}" text="{search>text}" width="50%" />
+                    </m:ComboBox>
+
+                    <m:ComboBox id="Value2" items="{path: 'search>/sublist'}">
+                    <core:Item  key="{search>key}" text="{search>text}" width="50%"/>
+                    </m:ComboBox>
+
+                    <m:Input id="Filter" value="" />
+
+                    <m:Button text="주문하기" type="Emphasized" tooltip="주문" press="onOrder" />
+                
+                    <m:Text text = "※ 집앞 배송은 오후 6시 이후에 출발합니다." />
+                                        
+            </m:VBox>
+
+
+
+		</headerContent> -->
+
+		<sections>
+
+        <ObjectPageSection titleUppercase="false" title="주문 상세정보">
+            <subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                            <m:VBox>
+                                <m:Text text="주문자 : " />
+                                <m:Text text="연락처 : " />
+                                <m:Text text="상품   : " />
+                                <m:Text text="총금액 : " />
+                            </m:VBox>
+                        </blocks>
+                	</ObjectPageSubSection>
+
+            </subSections>
+				
+
+        </ObjectPageSection>
+
+
+<!-- <ObjectPageSection titleUppercase="false" title="편의점 선택">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            items="{main2>/zz2c_storem}"
+                            mode = "SingleSelect"
+                            > 
+                            <m:columns>
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="편의점명" />
+                                </m:Column> 
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="상세주소" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="전화번호" />
+                                </m:Column>
+
+                            </m:columns>
+                            	<m:items>
+                                    <m:ColumnListItem vAlign="Middle">
+                                        <m:cells>
+                                            <m:Text text="{main2>Stnam}"/>
+                                            <m:Text text="{main2>Stadd}"/>
+                                            <m:Text text="{main2>Sttel}"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            
+                        </m:Table>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection> -->
+
+
+			<!-- <ObjectPageSection titleUppercase="false" title="상품목록">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable2"
+                            inset="false"
+                            items="{main>/ZZ2C_GOODPACK}"
+                            mode = "MultiSelect"
+                            > 
+                            <m:columns>
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="상품 코드" />
+                                </m:Column> 
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="상품 명" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="20em">
+                                    <m:Text text="발주 단가" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="10em">
+                                    <m:Text text="통화" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="수량" />
+                                </m:Column>
+
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+        
+                                        <m:Text text="{main>Gocod}" />
+                                        <m:Text text="{main>Gonam}" />  
+
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection> -->
+
+		</sections>
+
+        <footer>	
+            <m:OverflowToolbar id="otb1">
+                <m:ToolbarSpacer/>
+
+                <m:Button text="집앞 배송" type="Emphasized" tooltip="집앞 배송시 배송비 2,500원이 추가됩니다." press="toHome" />
+                <m:Button text="편의점 픽업" type="Emphasized" tooltip="편의점에서 직접 픽업합니다." press="pickUp"/>
+
+                <!-- <m:Button text="장바구니 추가" type="Emphasized" tooltip="장바구니 추가" press="onGet" />
+                <m:Button text="장바구니 이동" type="Emphasized" tooltip="장바구니 이동" press="onBuy"/> -->
+            </m:OverflowToolbar>
+        </footer>
+
+	</ObjectPageLayout>
+
+
+</mvc:View>

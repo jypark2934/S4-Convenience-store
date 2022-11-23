@@ -1,0 +1,130 @@
+<mvc:View controllerName="project4.controller.View1"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="도시락 상품 조회">
+			</ObjectPageHeader>
+		</headerTitle>
+
+        <!-- <headerContent>
+         <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+            <m:Image width="40%" class="sapUiTinyMargin" 
+                     justifyContent="End"  src="{view>/url}"/>
+            <m:Text  class="sapUiTinyMargin" text="도시락" />
+            </m:FlexBox>
+        </headerContent> -->
+		 <headerContent>
+			<f:SimpleForm id="SimpleForm5"
+                                editable="false"
+                                layout="ColumnLayout" width = "200%" >
+                                    <f:content>
+			                            <m:ComboBox id="Value1" items="{path: 'search>/MidText'}" change="onChange" liveChange="onLiveChange" >
+			                            <core:Item  key="{search>key}" text="{search>text}" width="50%" />
+			                            </m:ComboBox>
+                                        <!-- <m:ComboBox id="Value2" items="{path: 'search>/sublist'}">
+				                        <core:Item  key="{search>key}" text="{search>text}" width="50%"/>
+			                            </m:ComboBox> -->
+                                        <m:Input id="Filter" value="" />
+
+                                        <m:Button text="조회 하기" type="Emphasized" tooltip="조회" press="onFilterSearch" />
+                                    </f:content>
+                            </f:SimpleForm>
+		</headerContent>  
+
+		<sections>
+
+			<ObjectPageSection titleUppercase="false" title="상품목록">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            sticky="ColumnHeaders"
+                            items="{main>/ZZ2C_GOODPACK}"
+                            mode = "MultiSelect"
+                            > 
+                            
+                            <m:columns>
+
+                                 <m:Column
+                                    width="15em">
+                                    <m:Text text="예시 이미지" />
+                                </m:Column>
+
+                                <m:Column
+                                    width="10em">
+                                    <m:Text text="상품 코드" />
+                                </m:Column> 
+
+                                <m:Column
+                                    width="15em">
+                                    <m:Text text="상품 명" />
+                                    
+                                </m:Column>
+
+                                <m:Column
+                                    width="15em">
+                                    <m:Text text="가격" />
+                                </m:Column>
+
+                            
+                                <m:Column
+                                    width="5em">
+                                    <m:Text text="통화" />
+                                </m:Column>
+
+                                 <m:Column
+                                    width="10em">
+                                    <m:Text text="수량" />
+                                </m:Column>        
+
+                            </m:columns>
+
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Image width="40%"
+                                            class="sapUiTinyMargin" 
+                                            justifyContent="End"
+                                            src="{path: 'main>Gocod', formatter: '.formatter.setImgUrl'}"/>
+                                        <m:Text text="{main>Gocod}" />
+                                        <m:Text text="{main>Gonam}" />   
+                                        <m:Text text="{main>Cusprice}" />
+                                        <m:Text text="{main>Currency}" /> 
+                                         <m:StepInput
+                                                min="0"
+						                        max="100"
+						                        id="CurrentValue"
+						                        value="{main>custom}"
+						                        width="100px"/>
+				        
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+
+        <footer>	
+            <m:OverflowToolbar id="otb1">
+                <m:ToolbarSpacer/>
+                <m:Button text="장바구니 추가" type="Emphasized" tooltip="장바구니 추가" press="onGet" />
+                <m:Button text="장바구니 이동" type="Emphasized" tooltip="장바구니 이동" press="onBuy"/>
+            </m:OverflowToolbar>
+        </footer>
+
+	</ObjectPageLayout>
+</mvc:View>

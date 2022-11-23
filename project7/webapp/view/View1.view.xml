@@ -1,0 +1,295 @@
+<mvc:View controllerName="project7.controller.View1"
+     xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:s="sap.suite.ui.commons"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="Section sample">
+                <actions>
+                    <m:Button text="READ" type="Emphasized" tooltip="조회" press="onRead" />
+
+                </actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<m:ObjectAttribute title="" text="This example explains the rules for the rendering of sections"/>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="LIST">
+            
+            <subSections>
+					<ObjectPageSubSection titleUppercase="false">
+                    <m:Label text="날짜선택" labelFor="Date1" />
+                    <m:DatePicker id="Date1" placeholder="날짜입력" displayFormat="yyyy-MM-dd" change="handleChange" class="sapUiSmallMarginBottom" />
+                    <m:Button text="검색" type="Emphasized" tooltip="검색" press="onFilter" />
+                    <m:Button text="그래프" type="Emphasized" tooltip="그래프" press="onGraph" />
+                    <m:Text id="textResult" text="Change event result" class="sapUiSmallMargin"/>
+                    </ObjectPageSubSection>
+                    </subSections>
+                    
+            
+           
+            
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            items="{/ZZ2C_CHART}"
+                            mode = "SingleSelectMaster"
+                            selectionChange= "onSelectionChange"
+                            visible="false"> <!--{/SalesOrderSet} 배열 바인딩! -->
+                            <m:headerToolbar>
+                                <m:OverflowToolbar>
+                                    <m:content>
+                                        <m:Title text="Products" level="H2"/>
+                                        <m:ToolbarSpacer />
+                                    </m:content>
+                                </m:OverflowToolbar>
+                            </m:headerToolbar>
+                            <m:columns>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="stcode" />
+                                </m:Column> 
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="gocod" />
+                                </m:Column>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="sdate" />
+                                </m:Column>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="quant" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="unit" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="amoun" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="currc" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="stnam" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="gonam" />
+                                </m:Column>
+                                
+                                 
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{Stcod}" /><!-- {}에 /가 없을때는 상위에 있는 {/}를 찾는다 {/SalesOrderSet/Sonum} 이런식으로되는것!-->
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Gocod}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Sdate}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Quant}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Unit}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Amoun}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Currc}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Stnam}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Gonam}" />
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+            <ObjectPageSection id="aaa" title ="chart">
+            <subSections>
+            <ObjectPageSubSection>
+
+            <!-- <blocks> -->
+            <!-- <s:Content> -->
+            <!-- <viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='column'>
+            </viz:VizFrame> -->
+            <!-- </s:Content> -->
+            <!-- </blocks> -->
+
+            <blocks>
+                            <!-- <m:Text id="headerKey" text="test test" /> -->
+                            <s:ChartContainer id="idChartContainer" showFullScreen="true" showPersonalization="true" autoAdjustHeight="false" title="그래프">
+                                <s:content>
+                                    <s:ChartContainerContent icon="sap-icon://line-chart" title="Line Chart">
+                                        <s:content>
+                                            <viz:Popover id="idPopOver"></viz:Popover>
+                                            <viz:VizFrame id="idoVizFrame" height="700px" width="100%" uiConfig="{applicationSet:'fiori'}" vizProperties="{
+                                plotArea : {
+                                    dataLabel: {
+                                        visible: false
+                                    },
+                                    colorPalette : [ '#132424', '#999999']
+                                },
+                                title : {
+                                    text : '상품 별 판매량 분석',
+                                    visible : true
+                                },
+                                valueAxis : {
+                                    title : {
+                                        text : '판매량',
+                                        visible : true
+                                    }
+                                },
+                                categoryAxis : {
+                                    title : {
+                                        text : '상품',
+                                        visible : true
+                                    }
+                                }
+                            }"></viz:VizFrame>
+                                        </s:content>
+                                    </s:ChartContainerContent>
+                                    <s:ChartContainerContent icon="sap-icon://table-view" title="Table">
+                                        <s:content>
+                                             <m:Table id="idProductsTable"
+                            inset="false"
+                            items="{/ZZ2C_CHART}"
+                            mode = "SingleSelectMaster"
+                            selectionChange= "onSelectionChange"
+                            visible="false"> <!--{/SalesOrderSet} 배열 바인딩! -->
+                            <m:headerToolbar>
+                                <m:OverflowToolbar>
+                                    <m:content>
+                                        <m:Title text="Products" level="H2"/>
+                                        <m:ToolbarSpacer />
+                                    </m:content>
+                                </m:OverflowToolbar>
+                            </m:headerToolbar>
+                            <m:columns>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="stcode" />
+                                </m:Column> 
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="gocod" />
+                                </m:Column>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="sdate" />
+                                </m:Column>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="quant" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="unit" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="amoun" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="currc" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="stnam" />
+                                </m:Column>
+                                                                <m:Column
+                                    width="12em">
+                                    <m:Text text="gonam" />
+                                </m:Column>
+                                
+                                 
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{Stcod}" /><!-- {}에 /가 없을때는 상위에 있는 {/}를 찾는다 {/SalesOrderSet/Sonum} 이런식으로되는것!-->
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Gocod}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Sdate}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Quant}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Unit}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Amoun}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Currc}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Stnam}" />
+                                    </m:cells>
+                                    <m:cells>
+                                        <m:Text text="{Gonam}" />
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+                                        </s:content>
+                                    </s:ChartContainerContent>
+                                </s:content>
+                                <s:customIcons>
+                                    <core:Icon id="customIcon" src="sap-icon://print" tooltip="Custom Content Print" press="onCustomActionPress"></core:Icon>
+                                </s:customIcons>
+                                <s:toolbar>
+                                    <m:OverflowToolbar id="appToolbar">
+                                        <m:ToolbarSpacer/>
+                                        <s:ChartContainerToolbarPlaceholder></s:ChartContainerToolbarPlaceholder>
+                                    </m:OverflowToolbar>
+                                </s:toolbar>
+                                <s:dimensionSelectors>
+
+                                </s:dimensionSelectors>
+                            </s:ChartContainer>
+                        </blocks>
+            </ObjectPageSubSection>
+            </subSections>
+            </ObjectPageSection>
+            
+
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

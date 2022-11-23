@@ -1,0 +1,111 @@
+<mvc:View controllerName="project3.controller.View1"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:fiori="sap.ui.webc.fiori"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+                
+		<headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+            	<expandedHeading>
+					<m:Title text="강남 본점" wrapping="true" />
+				</expandedHeading>
+                <actions>
+					<m:Button text="재고 실사" type="Default" press="onInven" icon="sap-icon://customer-order-entry"/>
+			    </actions>
+            </ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+        <headerContent>
+        <f:SimpleForm id="SimpleForm5"
+                                editable="false"
+                                layout="ColumnLayout" width = "100%" >
+                                
+                                    <f:content>
+			                            <m:ComboBox id="Value5" items="{path: 'search2>/MidText'}" change="onChange" liveChange="onLiveChange" placeholder="지점이름" >
+                                            <core:Item  key="{search2>key}" text="{search2>text}" width="50%"/>
+                                        </m:ComboBox>  
+                                        <m:Button text="조회 하기" type="Emphasized" tooltip="조회" press="onFilterSearch" />         
+                                    </f:content>
+
+                            </f:SimpleForm>
+        </headerContent>
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="재고 조회">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+					<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            sticky="ColumnHeaders"
+                            items="{main>/ZZ2C_STOCKS}"
+                            mode = "MultiSelect"> 
+       
+                            <m:columns>
+                                <m:Column
+                                    width="6em">
+                                    <m:Text text="중분류" />
+                                </m:Column>
+                                <m:Column
+                                    width="4em">
+                                    <m:Text text="소분류" />
+                                </m:Column>
+                                <m:Column
+                                    width="5em">
+                                    <m:Text text="상품 코드" />
+                                </m:Column>
+                                <m:Column
+                                    width="8em">
+                                    <m:Text text="상품명" />
+                                </m:Column>
+                                <m:Column
+                                    width="3em">
+                                    <m:Text text="재고수량" />
+                                </m:Column>
+                                <m:Column
+                                    width="2em">
+                                    <m:Text text="단위" />
+                                </m:Column>
+                                <m:Column
+                                    width="6em">
+                                    <m:Text text="재고금액" />
+                                </m:Column>
+                                <m:Column
+                                    width="2em">
+                                    <m:Text text="통화" />
+                                </m:Column>
+
+                                
+        
+
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{main>Gtmid}" />
+                                        <m:Text text="{main>Gtsma}" />
+                                        <m:Text text="{main>Gocod}" />
+                                        <m:Text text="{main>Gonam}" />
+                                        <m:Text text="{main>Goqua}" />
+                                        <m:Text text="{main>Unit}" />
+                                        <m:Text text="{main>Total}" />
+                                        <m:Text text="{main>Currency}" />
+               
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+                        </blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

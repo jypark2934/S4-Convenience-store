@@ -1,0 +1,141 @@
+<mvc:View controllerName="project6.controller.View1"
+  xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="법인카드 결재요청 페이지">
+                <!-- <actions>
+                    <m:Button text="READ" type="Emphasized" tooltip="조회" press="onRead" />
+                    <m:Button text="READEntity" type="Emphasized" tooltip="단건조회" press="onReadEntity" />
+                    <m:Button text="CREATE" type="Emphasized" tooltip="생성" press="onCreate" />
+                    <m:Button text="UPDATE" type="Emphasized" tooltip="업데이트" press="onUpdate" />
+                    <m:Button text="DELETE" type="Emphasized" tooltip="삭제" press="onDelete" />
+                    <m:Button text="FILTER" type="Emphasized" tooltip="필터" press="onFilterSearch" />
+                    
+                </actions> -->
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<!-- <headerContent>
+			<m:ObjectAttribute title="" text="This example explains the rules for the rendering of sections"/>
+		</headerContent> -->
+
+		<sections>
+
+			<ObjectPageSection titleUppercase="false" title="READ">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                            <!-- <f:SimpleForm id="SimpleFormDisplayColumn_oneGroup"
+                                editable="false"
+                                layout="ColumnLayout" >
+                                    <f:content>
+                                        <m:Label text="Sonum" />
+                                        <m:Text id="idSonum" text="" />
+                                        <m:Label text="Memo" />
+                                        <m:Text id="idMemo" text="" />
+                                    </f:content>
+                            </f:SimpleForm> -->
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+           
+
+         
+
+               
+
+           
+
+
+			<ObjectPageSection titleUppercase="false" title="사용내역">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            items="{list>/ZZ2C_CUSTOMM}"
+                            mode = "SingleSelectMaster"
+                            selectionChange= "onSelectionChange"> <!--{/SalesOrderSet} 배열 바인딩! -->
+                            <m:headerToolbar>
+                                <m:OverflowToolbar>
+                                    <m:content>
+                                        <m:Title text="법인카드사용내역" level="H2"/>
+                                        <m:ToolbarSpacer />
+                                    </m:content>
+                                </m:OverflowToolbar>
+                            </m:headerToolbar>
+                            <m:columns>
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="Cuscod" />
+                                </m:Column> 
+                                <m:Column
+                                    width="12em">
+                                    <m:Text text="Name" />
+                                </m:Column>
+                                 
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{list>Cuscod}" /><!-- {}에 /가 없을때는 상위에 있는 {/}를 찾는다 {/SalesOrderSet/Sonum} 이런식으로되는것!-->
+                                        <m:Text text="{list>Name}" />
+                                      
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+ <ObjectPageSection titleUppercase="false" title="회계계정정보">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                        <!-- 업데이트 인풋 창 -->
+                            <f:SimpleForm id="SimpleForm5"
+                                editable="false"
+                                layout="ColumnLayout" >
+                                    <f:content>
+                                        <m:Label text="부서코드" />
+                                        <m:Input id="inpFilterSonum" value="" />
+                                     
+                                        <m:Label text="적요 (사용 목적)" />
+                                        <m:Input id="inpFilterMemo" value="" />
+                                    </f:content>
+                            </f:SimpleForm>
+            
+						</blocks>
+                        
+                           <f:SimpleForm id="SimpleForm6"
+                                editable="false"
+                                layout="ColumnLayout" >
+               <m:Button
+			text="저장"
+			class="sapUiSmallMarginBottom"
+			press=".onConfirmationMessageBoxPress"
+            width="100px"
+			ariaHasPopup="Dialog" />
+                       
+                         </f:SimpleForm>
+            
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

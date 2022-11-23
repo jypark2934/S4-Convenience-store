@@ -1,0 +1,249 @@
+<mvc:View controllerName="project8.controller.View1"
+ xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m" xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="오늘의 도시락">
+                <actions>
+                    <!-- <m:Button text="READ" type="Emphasized" tooltip="조회" press="onRead" /> -->
+                    <!-- <m:Button text="READEntity" type="Emphasized" tooltip="단건조회" press="onReadEntity" /> -->
+                    <!-- <m:Button text="배송 조회" type="Emphasized" tooltip="필터" press="onFilterSearch" />
+                    <m:Button text="UPDATE" type="Emphasized" tooltip="업데이트" press="onUpdate" /> -->
+                    <m:Button text="배송 실적 조회" type="Emphasized" tooltip="차트를 확인하려면 누르세요" press="onChart" />                    
+                    
+                </actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<m:ObjectAttribute title="" text="안녕하세요 기사님! 오늘도 안전 배송!"/>
+            <!-- readentity 조회해도 배송기사가 한명만 나오는건 아니라 하지말기-->
+            <!-- <m:Text id="idReadDpname" text="" /> -->
+		</headerContent>
+
+		<sections>
+
+			<!-- <ObjectPageSection titleUppercase="false" title="READ">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks> -->
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                            <!-- <f:SimpleForm id="SimpleFormDisplayColumn_oneGroup"
+                                editable="false"
+                                layout="ColumnLayout" >
+                                    <f:content>
+                                        <m:Label text="Gocod" />
+                                        <m:Text id="idGocod" text="" />
+                                        <m:Label text="Item" />
+                                        <m:Text id="idItem" text="" />
+                                    </f:content> -->
+                            <!-- </f:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection> -->
+
+            <ObjectPageSection titleUppercase="false" title="배송 조회">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                        <!-- 업데이트 인풋 창 -->
+                            <f:SimpleForm id="SimpleForm5"
+                                editable="false"
+                                layout="ColumnLayout" >
+                                    <f:content>
+
+                                        <m:Label text="배송 업체 코드" />
+                                        <m:ComboBox
+                                            id="idFilBikecod"
+                                            items="{path: 'search>/ComboBikecod'}" >
+                                            <core:Item key="{search>key}" text="{search>text}" />
+                                        </m:ComboBox>
+                                        <m:Label text="배송 기사 코드" editable="false"/>                                       
+                                        <m:ComboBox
+                                            id="idFilDcode"
+                                            items="{path: 'search>/ComboDcode'}" >
+                                            <core:Item key="{search>key}" text="{search>text}" />
+                                        </m:ComboBox>
+                                        <!-- 배송날짜 오늘날짜 보이게 -->
+                                        <m:Label text="배송 날짜" editable="false"/>
+                                        <m:DatePicker
+                                            id="idFilHopedate"
+                                            placeholder="Delivery Date"                                          
+                                            displayFormat="yyyy-MM-dd"
+                                            change="handleChange"
+                                            class="sapUiSmallMarginBottom"/>
+                                        <m:Label text="배송 유형" />
+                                        <!-- <m:Input id="idFilOrtype" value="" /> -->
+                                        <m:ComboBox
+                                            id="idFilOrtype"
+                                            items="{path: 'search>/ComboOrtype'}" >
+                                            <core:Item key="{search>key}" text="{search>text}" />
+                                        </m:ComboBox>
+
+                                        <m:Label text="배송 확정" />
+                                        <!-- <m:Input id="idFilDeliflag" value="" /> -->
+                                        <m:ComboBox
+                                            id="idFilDeliflag"
+                                            items="{path: 'search>/ComboDeliflag'}" >
+                                            <core:Item key="{search>key}" text="{search>text}" />
+                                        </m:ComboBox>
+
+                                        <m:Button text="배송 조회" type="Emphasized" tooltip="조회하려면 누르세요" press="onFilterSearch" width="30%"  />
+                                    </f:content>
+                            </f:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="배송완료 업데이트">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <!-- 여기다가sap.m.Text 추가-->
+                        <!-- <m:Text text= "Test"/> -->
+                        <!-- 업데이트 인풋 창 -->
+                            <f:SimpleForm id="SimpleForm2"
+                                editable="false"
+                                layout="ColumnLayout" >
+                                    <f:content>
+                                        <!-- 인풋창 추가 -->
+                                        <m:Label text="고객 주문번호" />
+                                        <m:Input id="idUpCodernum" value="" editable="false" />
+                                        <!-- 상품코드 추가하자일단 -->
+                                        <m:Label text="상품코드" />
+                                        <m:Input id="idUpGocod" value="" editable="false"/>
+                                        <m:Label text="배송상품" />
+                                        <m:Input id="idUpGonam" value="" editable="false"/>                                       
+                                        <m:Label text="배송 확정" />
+                                        <!-- <m:Input id="idUpDeliflag" value="" /> -->
+
+                                        <m:ComboBox
+                                            id = "idUpDeliflag"
+                                            items="{path: 'search>/ComboEditDeliflag'}" >
+                                            <core:Item key="{search>key}" text="{search>text}" />
+                                        </m:ComboBox>
+
+                                        <m:Button text="배송 확정" type="Emphasized" tooltip="배송을 확정하려면 누르세요" press="onUpdate" width="30%" />
+
+                                    </f:content>
+                            </f:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+<!-- filters : [
+                                        {path: 'Gocod', operator: 'Contains', value1: 'LU'},
+                                        {path: 'Hopedate', operator: 'EQ', value1: '' }] -->
+
+
+			<ObjectPageSection titleUppercase="false" title="도시락 배송 리스트">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                        <m:Table id="idProductsTable"
+                            inset="false"
+                            items= "{
+                                    path : 'list>/ZZ2C_CORDERFIORI'
+                                    }"                                     
+                            mode = "SingleSelectMaster"
+                            selectionChange= "onSelectionChange"> <!--{/SalesOrderSet} 배열 바인딩! -->
+                            <m:headerToolbar>
+                                <m:OverflowToolbar>
+                                    <m:content>
+                                        <m:Title text="" level="H2"/>
+                                        <m:ToolbarSpacer />
+                                    </m:content>
+                                </m:OverflowToolbar>
+                            </m:headerToolbar>
+                            <m:columns>
+                                <m:Column>
+                                    <m:Text text="배송업체코드" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="배송기사코드" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="기사명" />
+                                </m:Column>  
+                                <m:Column>
+                                    <m:Text text="배송날짜" />
+                                </m:Column>
+                                    <m:Column>
+                                    <m:Text text="고객주문번호" />
+                                </m:Column>
+                                    <m:Column>
+                                    <m:Text text="고객명" />
+                                </m:Column>
+                                    <m:Column>
+                                    <m:Text text="고객주소" />
+                                </m:Column>
+                                    <m:Column>
+                                    <m:Text text="지점명" />
+                                </m:Column> 
+                                    <m:Column>
+                                    <m:Text text="지점주소" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="배송유형" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="배송상품" />
+                                </m:Column>
+                                <!-- 상품코드추가 -->
+                                <m:Column>
+                                    <m:Text text="상품코드" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="수량" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="배송완료" />
+                                </m:Column>     
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Text text="{list>Bikecod}"/>
+                                        <m:Text text="{list>Dcode}"/><!-- {}에 /가 없을때는 상위에 있는 {/}를 찾는다 {/SalesOrderSet/Sonum} 이런식으로되는것!-->
+                                        <m:Text text="{list>Dpname}" />
+                                        <m:Text text="{
+                                                    path: 'list>Hopedate',
+                                                    type: 'sap.ui.model.type.Date',
+                                                    formatOptions: {
+                                                            pattern: 'yyyy-MM-dd'
+                                                        }
+                                                    }" />
+                                        <m:Text text="{list>Codernum}" />
+                                        <m:Text text="{list>Name}" />
+                                        <m:Text text="{list>Address}" />
+                                        <m:Text text="{list>Stnam}" />
+                                        <m:Text text="{list>Stadd}" />
+                                        <m:Text text="{list>Ortype}" />
+                                        <m:Text text="{list>Gonam}" />
+                                        <!-- 상품코드추가 -->
+                                        <m:Text text="{list>Gocod}" />
+                                        <m:Text text="{list>Quant}" />
+                                        <m:Text text="{list>Deliflag}" />
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>
